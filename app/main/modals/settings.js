@@ -7,6 +7,7 @@ angular.module('web')
     angular.extend($scope, {
       showTab: 3,
       set: {
+        cdnUrlHost: settingsSvs.cdnUrlHost.get(),
         maxUploadJobCount: settingsSvs.maxUploadJobCount.get(),
         maxDownloadJobCount: settingsSvs.maxDownloadJobCount.get(),
         historiesLength : settingsSvs.historiesLength.get(),
@@ -18,6 +19,7 @@ angular.module('web')
     function onSubmit(form1){
       if(!form1.$valid)return;
 
+      settingsSvs.cdnUrlHost.set( $scope.set.cdnUrlHost );
       settingsSvs.maxUploadJobCount.set( $scope.set.maxUploadJobCount );
       settingsSvs.maxDownloadJobCount.set( $scope.set.maxDownloadJobCount );
       settingsSvs.historiesLength.set( $scope.set.historiesLength );

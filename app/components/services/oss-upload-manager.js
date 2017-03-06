@@ -97,7 +97,7 @@ angular.module('web')
        * @param bucketInfo {object} {bucket, region, key}
        */
       function createUploadJobs(filePaths, bucketInfo, fn) {
-        //console.log('--------uploadFilesHandler:',  filePaths, bucketInfo);
+        // console.log('--------uploadFilesHandler:',  filePaths, bucketInfo);
 
         var authInfo = AuthInfo.get();
 
@@ -105,7 +105,7 @@ angular.module('web')
         angular.forEach(filePaths, function (n) {
           t = t.concat(dig(n, path.dirname(n)));
         });
-        //console.log(t);
+        // console.log(t);
 
         angular.forEach(t,function(n){
           addEvents(n);
@@ -138,9 +138,10 @@ angular.module('web')
               },
               to: {
                 bucket: bucketInfo.bucket,
-                key: path.join(bucketInfo.key, path.relative(dirPath, absPath))
+                key: path.join(bucketInfo.key, path.relative(dirPath, absPath)).replace(/\\/g, '/') //by Aobo: windows下path自动生成的为右斜杠oss不识别，替换为左斜杠；
               }
             });
+
             return [job];
           }
         }

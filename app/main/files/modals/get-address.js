@@ -1,7 +1,8 @@
 angular.module('web')
-  .controller('getAddressModalCtrl', ['$scope', '$q', '$uibModalInstance', 'item', 'currentInfo', 'ossSvs','safeApply',
-    function ($scope, $q, $modalInstance, item, currentInfo, ossSvs ,safeApply) {
+  .controller('getAddressModalCtrl', ['$scope', '$q', '$uibModalInstance', 'item','settingsSvs', 'currentInfo', 'ossSvs','safeApply',
+    function ($scope, $q, $modalInstance, item, settingsSvs, currentInfo, ossSvs ,safeApply) {
 
+    var Url = require('url');
 
       angular.extend($scope, {
         item: item,
@@ -31,7 +32,13 @@ angular.module('web')
             $scope.isLoading = false;
             if(xhr.status < 300){
               $scope.err = null;
-              $scope.cdnUrl = $scope.item.url.replace('cdn-small-file.oss-cn-beijing.aliyuncs.com', 'cdnsf.tudou.com');
+              //by Aobo： 如果设置类 cdn host，则增加cdn地址显示；
+              if(settingsSvs.cdnUrlHost.get() != ""){
+                  var oriUrl = Url.parse(item.url);
+                  oriUrl.host = settingsSvs.cdnUrlHost.get();
+                  $scope.cdnUrl = Url.format(oriUrl);
+              }
+
               $scope.step=1;
             }
             else if(xhr.status==403){

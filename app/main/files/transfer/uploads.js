@@ -14,6 +14,7 @@ angular.module('web')
       });
 
       function checkStartJob(item) {
+        // console.log(item);
         item.wait();
         ossUploadManager.checkStart();
       }

@@ -2,6 +2,15 @@ angular.module('web')
 .factory('settingsSvs', [function(){
 
   return {
+    cdnUrlHost: {
+      get: function(){
+        return localStorage.getItem('cdnUrlHost')||'';
+      },
+      set: function(v){
+        return localStorage.setItem('cdnUrlHost',v);
+      }
+    },
+
     maxUploadJobCount: {
       get: function(){
         return parseInt(localStorage.getItem('maxUploadJobCount')||2);
