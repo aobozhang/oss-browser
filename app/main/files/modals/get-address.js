@@ -22,6 +22,7 @@ angular.module('web')
       function init(){
         $scope.isLoading = true;
         $scope.step=2;
+        $scope.cdnUrl='';
         var ignoreError = true;
 
         $.ajax({url: item.url,
@@ -30,6 +31,7 @@ angular.module('web')
             $scope.isLoading = false;
             if(xhr.status < 300){
               $scope.err = null;
+              $scope.cdnUrl = $scope.item.url.replace('cdn-small-file.oss-cn-beijing.aliyuncs.com', 'cdnsf.tudou.com');
               $scope.step=1;
             }
             else if(xhr.status==403){
