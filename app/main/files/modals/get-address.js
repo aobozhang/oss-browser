@@ -35,8 +35,14 @@ angular.module('web')
               //by Aobo： 如果设置类 cdn host，则增加cdn地址显示；
               if(settingsSvs.cdnUrlHost.get() != ""){
                   var oriUrl = Url.parse(item.url);
-                  oriUrl.host = settingsSvs.cdnUrlHost.get();
-                  $scope.cdnUrl = Url.format(oriUrl);
+                  var cdnSetting = JSON.parse(settingsSvs.cdnUrlHost.get(), function(k, v) {
+                      var isMatch = oriUrl.host.indexOf(k) >= 0;
+                      if(k && isMatch) {
+                          oriUrl.host = v;
+                          $scope.cdnUrl = Url.format(oriUrl);
+                      }
+                  });
+                //   settingsSvs.cdnUrlHost.get();
               }
 
               $scope.step=1;
