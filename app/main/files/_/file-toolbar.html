@@ -26,9 +26,9 @@
         全选
       </button>
 
-      <button type="button" class="btn btn-default btn-sm" ng-disabled="!sel.has" ng-click="showDownloadDialog()">
-        <i class="glyphicon glyphicon-cloud-download text-primary"></i>
-        下载
+      <button type="button" class="btn btn-default btn-sm" ng-disabled="sel.has.length !=1 || sel.has[0].isFolder" ng-click="showAddress(sel.has[0])">
+          <i class="fa fa-download"></i>
+          获取地址
       </button>
 
       <button type="button" class="btn btn-default btn-sm" ng-disabled="!sel.has" ng-click="showDeleteFilesSelected()">
@@ -71,7 +71,7 @@
             ACL权限
           </a>
         </li>
-        
+
         <li>
           <a href="" ng-if="sel.has"
             ng-class="{'text-success':sel.has}"
@@ -82,9 +82,9 @@
         </li>
 
         <li>
-          <a href="" ng-if="sel.has.length==1 && !sel.has[0].isFolder" ng-click="showAddress(sel.has[0])">
-            <i class="fa fa-download"></i>
-            获取地址
+          <a href="" ng-if="sel.has" ng-click="showDownloadDialog()">
+              <i class="glyphicon glyphicon-cloud-download text-primary"></i>
+              下载
           </a>
         </li>
       </ul>
