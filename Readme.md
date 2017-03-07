@@ -4,6 +4,14 @@
 + 增加了CDN地址设置和获取；  
 + 修复了windows环境下上传路径失败（分隔符转义错误）的bug；
 
+0.2.0
++ 可设置多个Bucket和CDN的映射规则（Json形式在设置中添加）
+
+例如：
+~~~
+{"sample-bucket":"cdn.sample.com","sample-bucket-2":"cdn2.sample.com"}
+~~~
+
 ----
 
 # OSS Browser
