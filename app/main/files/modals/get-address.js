@@ -36,13 +36,12 @@ angular.module('web')
               if(settingsSvs.cdnUrlHost.get() != ""){
                   var oriUrl = Url.parse(item.url);
                   var cdnSetting = JSON.parse(settingsSvs.cdnUrlHost.get(), function(k, v) {
-                      var isMatch = oriUrl.host.indexOf(k) >= 0;
+                      var isMatch = oriUrl.host.indexOf(k) >= 0; //检查是否有符合设置的Bucket；
                       if(k && isMatch) {
                           oriUrl.host = v;
                           $scope.cdnUrl = Url.format(oriUrl);
                       }
                   });
-                //   settingsSvs.cdnUrlHost.get();
               }
 
               $scope.step=1;
